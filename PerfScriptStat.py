@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
 
 def analyze_performance_metrics(csv_file, output_folder):
     """
@@ -14,6 +15,9 @@ def analyze_performance_metrics(csv_file, output_folder):
         dict: A dictionary with min, max, and average values for each metric.
     """
     try:
+        # Create the output folder if it doesn't exist
+        os.makedirs(output_folder, exist_ok=True)
+
         # Load the CSV file into a DataFrame
         data = pd.read_csv(csv_file)
 
@@ -71,8 +75,7 @@ def analyze_performance_metrics(csv_file, output_folder):
         return None
 
 
-# Example usage
-stats = analyze_performance_metrics("PerformanceWorldOfTanksMainMenu.csv", "./outputMM")   # change .csv file to other form foler to create new grapsh, also change name of foler where output will be created
-if stats:
-    for metric, values in stats.items():
-        print(f"{metric} -> Min: {values['min']}, Max: {values['max']}, Avg: {values['avg']:.2f}")
+
+stats = analyze_performance_metrics("PerformanceWorldOfTanks.csv", "./gameplay_output")  
+stats = analyze_performance_metrics("PerformanceWorldOfTanksMainMenu.csv", "./mainmenu_output")
+

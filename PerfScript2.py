@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
 
 def generate_performance_report(csv_file, output_folder):
     """
@@ -10,6 +11,8 @@ def generate_performance_report(csv_file, output_folder):
         output_folder (str): Folder where the graphs will be saved.
     """
     try:
+        # Create the output folder if it doesn't exist
+        os.makedirs(output_folder, exist_ok=True)
         # Load the CSV file into a DataFrame
         data = pd.read_csv(csv_file)
 
@@ -51,4 +54,6 @@ def generate_performance_report(csv_file, output_folder):
         print(f"An error occurred: {e}")
 
 
-generate_performance_report("PerformanceWorldOfTanksMainMenu.csv", "./outputMM") # change .csv file to other form foler to create new grapsh, also change name of foler where output will be created
+generate_performance_report("PerformanceWorldOfTanks.csv", "./gameplay_output")
+generate_performance_report("PerformanceWorldOfTanksMainMenu.csv", "./mainmenu_output")
+
